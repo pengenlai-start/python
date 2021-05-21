@@ -1,0 +1,17 @@
+python基础
+    编译器：
+        编译器： 编译型语言c、c++ | 可执行效率高
+        解释器： 解释性语言python | 跨平台性高
+
+    解释器——python、python3
+        eg: python x.py     x.py python源程序
+
+    交互式——ipython    适合学习验证python语法或者局部代码，不能保存，不适合运行太大的程序
+
+    集成开发环境——PyCharm                             CPython(Python) —— 官方版本的C语言实现
+
+    python2.x 不支持中文
+
+    交互式：
+        1）官方shell python/python3    ctrl + d 或者 exit() 退出
+        2）非官方shell ipython/ipython3  支持自动补全；支持 bash shell | ctrl + D 或者 exit 退出

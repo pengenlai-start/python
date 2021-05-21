@@ -1,0 +1,25 @@
+.idea —— 目录、保存项目设置相关的内容
+
+恢复 PyCharm 的初始设置
+    PyCharm 的配置信息保存在用户家目录下的 .PyCharmxxx.x目录下    xxx.x 为当前使用的 PyCharm 的版本号
+    $ rm -r .PyCharmxxx.x
+
+打开项目—— 点对应程序文件，右键菜单，运行，不能直接用工具栏运行
+
+安装和启动步骤：
+    1）解压缩下载后的安装包
+        $ tar -xzvf pycharm-xxxx-xxx.tar.gz
+    2）将解压缩后的目录移动到 /opt 目录下，方便其他用户使用     /opt —— 存放给主机额外安装的软件
+    3）切换工作目录
+        $ cd /opt/pycharm-xxxx/bin
+    4）启动 pycharm
+        $ ./pycharm.sh
+
+程序卸载
+    1）删除解压缩目录
+        $ sudo rm -r /opt/pycharm-xxxx/
+    2）删除家目录下用于保存配置信息的隐藏目录
+        $ rm -r .PyCharmxxxx
+    3) 若不再使用 PyCharm 再将 /usr/share/applications/ 目录下的相关文件删除
+        快捷方式文件  /usr/share/applications/
+
