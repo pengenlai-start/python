@@ -1,2 +1,0 @@
-$ which python3     # 查找python解释器的位置
-$ ls -lh /usr/bin/python3   # 查看python解释器的大小
