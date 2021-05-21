@@ -1,0 +1,5 @@
+软件和更新，ubuntu软件修改软件源
+建议从linux软件中心下载sublime
+为sublime安装Package Controller,使用Ctrl+`快捷键或者通过View->Show Console菜单打开命令行,在命令行中输入以下代码
+	import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf),'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
+顺利的话，就可以在Preferences菜单下看到Package Settings和Package Control两个菜单了

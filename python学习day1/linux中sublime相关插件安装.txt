@@ -1,0 +1,12 @@
+Preference->Package Control中找到Package Control: Install Package,然后输入我们需要安装的插件名，比如git，待控制台输出对应的成功信息，则插件安装成功。
+需要安装的插件有：
+	SideBarEnhancements：增强工具栏
+	AnvancedNewFile：快速创建文件
+	ConvertToUTF8：使用UTF8打文件
+	Emmet：前端代码(HTML/CSS)快速补全
+	SublimeCodeIntel：代码提示
+	DocBlockr：高级JS注释
+	JSHint：JS语法检查
+	JsFormart：JS代码格式化
+	Javascript Beautify：JS代码格式化
+	Git：git代码跟踪插件
