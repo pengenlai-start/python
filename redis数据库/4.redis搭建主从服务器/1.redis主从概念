@@ -1,0 +1,6 @@
+redis 主从概念
+    一个 master 可以拥有多个 slave ，一个 slave 又可以拥有多个 slave，如此下去形成了强大
+    的多级服务器集群架构
+    master 用来写数据， slave 用来读数据
+    通过主从配置可以实现读写分离
+

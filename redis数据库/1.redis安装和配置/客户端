@@ -1,0 +1,11 @@
+客户端
+    客户端的命令为 redis-cli
+可以使用 help 查看帮助文档
+    redis-cli --help
+连接 redis
+    redis-cli
+运行测试命令
+    ping
+切换数据库
+数据库没有名称，默认有 16 个，通过 0-15 来标识，连接 redis 默认选择第一个数据库
+select n

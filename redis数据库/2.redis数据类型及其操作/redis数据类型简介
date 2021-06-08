@@ -1,0 +1,17 @@
+数据结构
+    redis 是 key-value 的数据结构，每条数据都是一个键值对
+    键的类型是字符串
+    注意：键不能重复
+值的类型分为5种
+    字符串 string
+    哈希 hash
+    列表 list
+    集合 set
+    有序集合 zset
+
+数据操作行为
+    保存
+    修改
+    获取
+    删除
+中文官网查看命令文档 http://redis.cn/commands.html

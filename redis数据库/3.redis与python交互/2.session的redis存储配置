@@ -1,0 +1,31 @@
+session 的 redis 存储配置
+    安装包
+        pip install django-redis-sessions==0.5.6
+    修改 settings 文件，增加如下项
+        SESSION_ENGINE = 'redis_sessions.session'
+        SESSION_REDIS_HOST = 'localhost'
+        SESSION_REDIS_PORT = '6379'
+        SESSION_REDIS_DB = 2
+        SESSION_REDIS_PASSWORD = ''
+        SESSION_REDIS_PREFIX = 'session'
+
+测试
+    打开 booktest/views.py 文件，创建 session_set 和 session_get 视图如下
+        def session_set(request):
+            request.session['name'] = 'pel'
+            request.session['age'] = 18
+            return HttpResponse('ok')
+
+        def session_get(request):
+            name = request.session['name']
+            age = request.session['age']
+            print(name + str(age))
+            return HttpResponse(name + str(age))
+
+    打开 booktest/urls.py 文件，配置 url 如下
+        url(r'^session_set/$', views.session_set),
+        url(r'^session_get/$', views.session_get),
+
+    通过 redis-cli 客户端查看
+
+    Base64在线解码 http://base64.xpcha.com/

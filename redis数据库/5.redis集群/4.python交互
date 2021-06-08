@@ -1,0 +1,28 @@
+python 交互
+
+    安装包如下
+        pip install redis-py-cluster
+    redis-py-cluster 源码地址： https://github.com/Grokzen/redis-py-cluster
+    创建文件 redis_cluster.py，eg
+        from rediscluster import *
+
+        if __name__ == '__main__':
+            try:
+                # 构建所有的节点，redis 会使用 crc16 算法，将键和值写到某个节点上
+                # 主节点就行
+                startup_nodes = [
+                    {'host':'192.168.26.128', 'port':'7000'},
+                    {'host':'192.168.26.128', 'port':'7003'},
+                    {'host':'192.168.26.128', 'port':'7001'},
+                ]
+                # 构建 StrictRedisCluster 对象
+                src = StrictRedisCluster(startup_nodes=startup_nodes,decode_responses=True)
+                # 设置 键 为 name 值为 pel的数据
+                result = src.set('name','pel')
+                print(result)
+                # 获取键 为 name
+                name = src.get('name')
+                print(name)
+            except Exception as e:
+                print(e)
+

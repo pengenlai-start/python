@@ -1,0 +1,4 @@
+Redis 优势：
+    1）性能极高--Redis 能读的速度是110000次/s ，写的速度是81000次/s
+    2) 丰富的数据类型--Redis 支持二进制案例的 Strings，Lists，Hashes，Sets 及 Ordered Sets数据类型操作
+    3）丰富的特性--Redis 喊支持 publish/subscribe ，通知，key 过期等等特性

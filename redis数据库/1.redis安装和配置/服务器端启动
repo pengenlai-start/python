@@ -1,0 +1,15 @@
+服务器端
+    服务器端的命令为 redis-server   能自动补全说明安装成功，不可重复安装，否则会启动失败
+可以使用 help 查看帮助文档
+    redis-server --help
+推荐使用服务的方式管理 redis 服务
+启动
+    sudo service redis start
+停止
+    sudo service redis stop
+重启
+    sudo service redis restart
+个人习惯
+    ps -ef|grep redis   查看 redis 服务器进程
+    sudo kill -9 pid 杀死 redis 服务器进程
+    sudo redis-server /etc/redis/redis.conf 指定加载的配置文件

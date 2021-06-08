@@ -1,0 +1,43 @@
+zset 类型
+    sorted set, 有序集合
+    元素为 string 类型
+    元素具有唯一性，不重复
+    每个元素都会关联一个 double 类型的 score， 表示权重，通过权重将元素从小到大排序
+    没有修改操作
+
+增加
+
+    zadd key score1 member1 score2 member2...
+    eg:
+    zadd a4 4 lisi 5 wangwu 6 zhaoliu 3 zhangsan
+
+获取
+    返回指定范围内的元素
+    start、stop 为元素的下标索引
+    索引从左侧开始，第一个元素为 0
+    索引可以是负数，表示从尾部开始计数，-1 表示最后一个元素
+    zrange key start stop
+    eg:
+    zreange a4 0 -1
+
+    返回 score 值在 min 和 max 之间的成员 [min, max]
+    zrangebyscore key min max
+    eg:
+    zrangebyscore a4 5 6
+
+    返回成员 member 的 score 值
+    zscore key member
+    eg：
+    zscore a4 zhangsan
+
+删除
+    删除指定元素
+    zrem key member1 member2...
+    eg:
+    zrem a4 zhangsan lisi
+    删除权重在指定范围的元素    [min, max]
+    zremrangebyscore key min max
+    eg:
+    zremrangebyscore a4 5 6
+
+

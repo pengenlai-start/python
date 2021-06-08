@@ -1,0 +1,23 @@
+核心配置选项
+    绑定 ip ：如果需要远程访问，可将此行注释，或绑定一个真实 ip
+        bind 127.0.0.1
+    端口，默认为6379
+        port 6379
+    是否以守护进程运行
+        如果以守护进程运行，则不会在命令行阻塞，类似于服务
+        如果以非守护进程运行，则当前终端被阻塞
+        设置为 yes 表示守护进程，设置为 no 表示非守护进程
+        推荐设置为 yes
+        daemonize yes
+    数据文件
+        dbfilename dump.rdb
+    数据文件存储路径
+        dir /var/lib/redis
+    日志文件
+        logfile /var/log/redis/redis-server.log
+    数据库，默认 16 个
+        databases 16
+    主从复制，类似于双机备份
+        slaveof
+
+    redis配置信息 http://blog.csdn.net/ljphilp/article/details/52934933

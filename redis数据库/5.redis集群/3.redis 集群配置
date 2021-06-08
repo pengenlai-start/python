@@ -1,0 +1,126 @@
+配置 redis 集群
+
+    配置机器1
+        在演示中，172.16.179.130 为当前 ubuntu 机器的 ip
+        在 172.16.179.130 上进入 Desktop 目录，创建 conf 目录
+        在 conf 目录下创建文件 7000.conf，编辑内容如下
+
+            port 7000
+            bind 172.16.179.130
+            daemonize yes
+            pidfile 7000.pid
+            cluster-enabled yes
+            cluster-config-file 7000_node.conf
+            cluster-node-timeout 15000
+            appendonly yes
+
+        在 conf 目录下创建文件 7001.conf，编辑内容如下
+
+            port 7001
+            bind 172.16.179.130
+            daemonize yes
+            pidfile 7001.pid
+            cluster-enabled yes
+            cluster-config-file 7001_node.conf
+            cluster-node-timeout 15000
+            appendonly yes
+
+        在 conf 目录下创建文件 7002.conf，编辑内容如下
+
+            port 7002
+            bind 172.16.179.130
+            daemonize yes
+            pidfile 7002.pid
+            cluster-enabled yes
+            cluster-config-file 7002_node.conf
+            cluster-node-timeout 15000
+            appendonly yes
+
+        使用配置文件启动 redis 服务
+            sudo redis-server ./7000.conf
+            sudo redis-server ./7001.conf
+            sudo redis-server ./7002.conf
+
+    配置机器2
+        在演示中，172.16.179.131 为当前 ubuntu 机器 ip
+        在 172.16.179.131 上进入 Desktop 目录，创建 conf 目录
+        在 conf 目录下创建文件 7003.conf，编辑内容如下
+
+            port 7003
+            bind 172.16.179.131
+            daemonize yes
+            pidfile 7003.pid
+            cluster-enabled yes
+            cluster-config-file 7003_node.conf
+            cluster-node-timeout 15000
+            appendonly yes
+
+        在 conf 目录下创建文件 7004.conf，编辑内容如下
+
+            port 7004
+            bind 172.16.179.131
+            daemonize yes
+            pidfile 7004.pid
+            cluster-enabled yes
+            cluster-config-file 7004_node.conf
+            cluster-node-timeout 15000
+            appendonly yes
+
+        在 conf 目录下创建文件 7005.conf，编辑内容如下
+
+            port 7005
+            bind 172.16.179.131
+            daemonize yes
+            pidfile 7005.pid
+            cluster-enabled yes
+            cluster-config-file 7005_node.conf
+            cluster-node-timeout 15000
+            appendonly yes
+
+        使用配置文件启动 redis 服务
+            sudo redis-server ./7003.conf
+            sudo redis-server ./7004.conf
+            sudo redis-server ./7005.conf
+
+    创建集群
+        redis 的安装包中包含了 redis-trib.rb，用于创建集群
+        接下来的操作在 172.16.179.130 上进行
+        将命令复制，这样可以在任何目录下调用次命令
+            sudo cp /usr/share/doc/redis-tools/examples/redis-trib.rb /usr/local/bin/
+        安装 ruby 环境，因为 redis-trib.rb 是用 ruby 开发的
+            sudo apt-get install ruby
+        在提示信息处输入 y，然后回车继续安装
+
+        运行如下命令创建集群
+            reids-trib.rb create --replicas 1 172.16.179.130:7000 172.16.179.130:7001 172.16.179.130:7002
+            172.16.179.131:7003 172.16.179.131:7004 172.16.179.131:7005
+        天朝的防火墙导致无法下载最新版本，所以需要设置 gem 的源
+        解决办法如下
+            查看自己的 gem 源是什么地址
+                gem source -l -- 如果是 https://rubygems.org 就需要更换
+            更换指令
+                gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+            通过 gem 安装 redis 的相关依赖
+                sudo gem install redis
+            重新执行指令
+
+        blog.csdn.net/vtopqx/article/details/49246521
+
+        槽 -- slots
+
+        在那个服务器上写数据：CRC16
+            CRC16(key) % 16384
+
+        集群中必须要有3个或以上的主节点，否则在创建集群时会失败，并且当存活的主节点数小于总节点数
+        的一半时，整个集群就无法提供服务了
+
+
+        数据验证
+            根据上图可以看出，当前搭建的主服务器为 7000、7001、7003，对应的从服务器是7004、7005、7002
+            在 172.16.179.131 机器上连接 7002，加参数 -c 表示连接到集群
+                redis-cli -h 172.16.179.131 -c -p 7002
+            写入数据
+                set name itheima
+            自动跳到了 7003 服务器，并写入数据成功
+            在 7003 可以获取数据，如果写入数据重定向到7000（负载均衡）
+
