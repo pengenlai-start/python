@@ -1,0 +1,5 @@
+1.函数、变量及属性用小写字母来拼写，各单词之间用下划线相连，例如: lowercase_underscore
+2.受保护的实例属性，用一个下划线开头，例如：_leading_underscore
+3.私有的实例属性，用两个下划线开头，例如：__double_leading_underscore
+4.类（包括异常）命名时，每个单词的首字母均大写，例如： CapitalizedWord
+5.模块级别的常量，所有字母都大写，个单词之间
