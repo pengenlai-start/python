@@ -1,0 +1,58 @@
+eg.
+f_string = f'{key:<10} = {value:.2f}'
+
+c_tuple = '%-10s = %.2f' % (key, value)
+
+str_args = '{:<10} = {:.2f}'.format(key,value)
+
+str_kw = '{key:<10} = {value:.2f}'.format(key=key,
+                                            value=value)
+
+c_dict = '%(key)-10s = %(value).2f' % {'key': key,
+                                        'value': value}
+
+assert c_tuple == c_dict == f_string
+assert str_args == str_kw == f_string
+
+eg.
+for i, (item, count) in enumerate(pantry):
+    old_style = '#%d: %-10s = %d' % (
+                i + 1,
+                item.title(),
+                round(count))
+
+    new_style = '#{}: {:<10s} = {}'.format(
+                i + 1,
+                item.title(),
+                round(count))
+
+    f_string = f'#{i+1}: {item.title():<10s} = {round(count)}'
+
+    assert old_style == new_style == f_string
+
+eg.
+for i, (item, count) in enumerate(pantry):
+    print(f'#{i + 1}: '
+            f'{item.title():<10s} = '
+            f'{round(count)}')
+>>>
+#1: Avocados  = 1
+#2: Bananas   = 2
+#3: Cherries  = 15
+
+eg.
+places = 3
+number = 1.23456
+print(f'My number is {number:.{places}f}')
+
+>>>
+My number is 1.235
+
+要点：
+1.采用 % 操作符把值填充到 C 风格的格式字符串时会遇到许多问题，而且这种写法比较繁琐
+2.str.format 方法专门用一套迷你语言来定义它的格式说明符，这套语言给我们提供了一些有用的概念，
+但是在其他方面，这个方法还是存在与 C 风格的格式字符串一样的多种缺点，所以我们也应该避免使用它。
+3.f-string 采用新的写法，将值填充到字符串之中，解决了 C 风格的格式字符串所带来的最大问题
+4.f-string 是个简洁而强大的机制，可以直接在格式说明符里嵌入任意 Python 表达式
+
+
