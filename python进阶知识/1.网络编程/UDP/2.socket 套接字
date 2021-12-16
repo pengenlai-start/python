@@ -1,0 +1,23 @@
+Socket 套接字 ---- 全双工，可同时收发数据
+
+创建 socket
+在 python 中使用 socket 模块的函数 socket 就可以完成
+
+eg.
+
+import socket
+
+socket.socket(AddressFamily, Type)
+# AddressFamily
+# AF_INET 用于 Internet 进程间通信
+# AF_UNIX 用于同一台机器进程间通信
+
+# Type
+# SOCK_STREAM ---- TCP
+# SOCK_DGRAM ---- UDP
+
+Linux ---- Sublime Text ---- 文本编辑器
+
+sudo dhclient ---- 等待别人给 ip，桥接模式下能将 ip 设置成和主机处于同一网络地址下
+
+
