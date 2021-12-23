@@ -1,0 +1,8 @@
+线程
+
+python 的 thread 模块是比较底层的模块。 python 的 threading 模块是对 thread 做了一些包装的可以更加方便的被使用
+
+并行： 真的多任务
+
+并发： 假的多任务
+
