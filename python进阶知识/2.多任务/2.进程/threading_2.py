@@ -1,0 +1,34 @@
+"""
+通过队列完成进程间的通信 --- 有解耦效果
+"""
+
+import multiprocessing
+
+
+def download_from_web(q):
+    data = [11, 22, 33, 44]
+    for temp in data:
+        q.put(temp)
+    print("下载完毕")
+
+
+def analysis_data(q):
+    waiting_analysis_data = list()
+    while True:
+        data = q.get()
+        waiting_analysis_data.append(data)
+        if q.empty():
+            break
+    print(waiting_analysis_data)
+
+
+def main():
+    q = multiprocessing.Queue()
+    p1 = multiprocessing.Process(target=download_from_web, args=(q,))
+    p2 = multiprocessing.Process(target=analysis_data, args=(q,))
+    p1.start()
+    p2.start()
+
+
+if __name__ == '__main__':
+    main()
